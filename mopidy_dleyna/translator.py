@@ -138,4 +138,4 @@ def query(query, exact, searchcaps):
             terms.extend(fmt.format(op, _quote(value)) for value in values)
         else:
             raise NotImplementedError('Keyword "%s" not searchable' % key)
-    return ('(%s)' % ') and ('.join(terms)) or '*'
+    return ('(Type = "music" or Type = "audio") and (%s)' % ') and ('.join(terms)) or '*'

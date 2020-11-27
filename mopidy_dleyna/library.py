@@ -185,7 +185,7 @@ class dLeynaLibraryProvider(backend.LibraryProvider):
 
         def images(offset, limit):
             slice = paths[offset:offset + limit if limit else None]
-            query = ' or '.join('Path = "%s%s"' % (root, p) for p in slice)
+            query = '(Type = "music" or Type = "audio") and (' + ' or '.join('Path = "%s%s"' % (root, p) for p in slice) + ')'
             return client.search(baseuri, query, 0, 0, filter).apply(
                 lambda res: (res[0], limit and offset + limit < len(paths))
             )
